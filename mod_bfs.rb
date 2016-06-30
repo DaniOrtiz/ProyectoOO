@@ -1,5 +1,9 @@
 =begin
+	Archivo: mod_bfs.rb
 	Definición del módulo bfs
+	Elaborado por: 
+	- Maria Lourdes Garcia (10-10264)
+	- Daniela Ortiz (10-10517)
 =end
 
 module BFS

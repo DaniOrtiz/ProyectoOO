@@ -1,19 +1,32 @@
 =begin
+	Archivo: trees.rb
 	Definición de árboles
+	Elaborado por:
+	- Maria Lourdes Garcia (10-10264)
+	- Daniela Ortiz (10-10517)
 =end
 
+require_relative 'nodos.rb'
 require_relative 'mod_bfs.rb'
+require_relative 'mod_fold.rb'
 
-# Clase árbol #### EXTENDER CUANDO TENGAMOS MUTADORES
+# Clase árbol 
 class Tree
 
 	include BFS
+	include DFS
+
+	attr_accessor :node # Objeto que guarda el valor del nodo actual
+
+	def mutar(objeto)
+		@node =self.node.mutar(objeto)
+	end
 
 end
 
 # Clase árbol binario
 class BinaryTree < Tree
-	attr_accessor :node # Objeto que guarda el valor del nodo actual 
+	 
 	attr_reader :left,  # Referencia al hijo izquierdo
 	            :right  # Referencia al hijo derecho
 
@@ -37,13 +50,16 @@ end
 
 # Clase árbol rosa
 class PinkTree < Tree
-	attr_accessor :node # Objeto que guarda el valor del nodo actual 
+	 
 	attr_reader :sons   # Arreglo de hijos
 
 	# Constructor de un árbol rosa.
-	def initialize(node, sons = [])
+	def initialize(node, *hijos)
 		@node = node 
-		@sons = sons
+		@sons = []
+		hijos.each do |elem| # Iteramos sobre los elementos de la lista hijos
+			@sons << elem    # Se agregan a la lista de hijos sons
+		end
 	end
 
 	# Método para iterar sobre los hijos de un nodo.
