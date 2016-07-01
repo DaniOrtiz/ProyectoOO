@@ -8,6 +8,7 @@
 
 module DFS
 
+	# Método para realizar el recorrido DFS.
 	def dfs(&block)
 		node = self
         yield node
@@ -16,14 +17,17 @@ module DFS
         end
 	end
 
-	def fold(baseValue,&block)
-		baseValue = yield(self,baseValue)
+	# Método que recibe un valor base y un bloque de manera
+	# implícita e itera desde self haciendo recorrido DFS.
+	def fold(valorBase,&block)
+		valorBase = yield(self,valorBase)
 		self.each do |child|
-			res = child.fold(baseValue,&block)
-			baseValue = res
+			res = child.fold(valorBase,&block)
+			valorBase = res
 		end
-		baseValue
+		valorBase
 	end
+	
 	
 
 end
