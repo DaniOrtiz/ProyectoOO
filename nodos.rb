@@ -40,7 +40,7 @@ class Singular < Mutador
 		return aux.joins()
 	end	
 
-	def withArreglos(val)
+	def withArray(val)
 		return val.flatten.join(" ")
 	end
 
@@ -70,8 +70,9 @@ class Uniforme < Mutador
 	end
 
 	def withArray(val)
+		u   = Uniforme.new()
 		aux = []
-		val.each {|i| aux.push(i.mutar(Uniforme.new()))}
+		val.each {|i| i.push(i.mutar(u))}
 		return aux
 	end
 
@@ -86,7 +87,7 @@ class Oscuro < Mutador
 		return cont.join.to_i
 	end
 
-	def withStirng(val)
+	def withString(val)
 		left  = []
 		rigth = []
 		val   = val.split("")
@@ -103,13 +104,14 @@ class Oscuro < Mutador
 	end
 
 	def withArray(val)
+		o 	   = Oscuro.new() 
 		val    = val.flatten
 		tam    = (0..val.length-1)
 		aux    = tam.to_a
 		tam    = val.length.fdiv(2)
 		random = aux.sample(tam.round)
 		for i in random
-			val[i] = (val[i].mutar(Oscuro.new()))
+			val[i] = (val[i].mutar(o))
 		end
 		return val
 	end
@@ -121,7 +123,7 @@ end
 class Fixnum
 
 	def mutar(mut)
-		return mut.withFixnum(self)
+		mut.withFixnum(self)
 	end
 
 end
@@ -129,7 +131,7 @@ end
 class String
 
 	def mutar(mut)
-		return mut.withString(self)
+		mut.withString(self)
 	end	
 
 end
@@ -137,7 +139,7 @@ end
 class Array
 
 	def mutar(mut)
-		return mut.withArray(self)
+		mut.withArray(self)
 	end
 		
 end
