@@ -18,8 +18,8 @@ class Tree
 
 	attr_accessor :node # Objeto que guarda el valor del nodo actual
 
-	def mutar(objeto)
-		@node =self.node.mutar(objeto)
+	def mutar(mutador)
+		@node =self.node.mutar(mutador.new())
 	end
 
 end
